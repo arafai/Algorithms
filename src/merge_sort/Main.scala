@@ -37,5 +37,4 @@ object Main extends App {
       merge(mergeSort(l), mergeSort(r))
     }
   }
-
 }
