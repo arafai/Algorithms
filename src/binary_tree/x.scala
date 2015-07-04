@@ -298,9 +298,7 @@ trait Tree[+A] {
 }
 
 case class Node[A](v: A, l: Tree[A], r: Tree[A]) extends Tree[A]
-
 case class Leaf[A](v: A) extends Tree[A]
-
 case object Empty extends Tree[Nothing]
 
 object Run extends App {
@@ -355,7 +353,7 @@ object Run extends App {
   println("nth postorder 5 : " + t.nthPostorder(5))
   println("nth levelorder 5 : " + t.nthLevelorder(5))
 
-  //    
+  //
   /**
    * **** output *********
    *

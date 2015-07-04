@@ -1,4 +1,4 @@
-package heap_sort
+package sorting.heap_sort
 
 import scala.collection.mutable._
 import scala.util.Random

@@ -3,6 +3,6 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src/insertion_sort/Main.scala" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/max_continous_subarr/Main.scala" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/merge_sort/Main.scala" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/sorting/merge_sort/Main.scala" charset="ISO-8859-1" />
   </component>
 </project>

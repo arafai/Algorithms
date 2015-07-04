@@ -1,4 +1,4 @@
-package quicksort
+package sorting.quicksort
 
 object Main extends App {
 

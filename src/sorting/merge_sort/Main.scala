@@ -1,4 +1,4 @@
-package merge_sort
+package sorting.merge_sort
 
 import scala.collection.immutable.Stream.Empty
 
