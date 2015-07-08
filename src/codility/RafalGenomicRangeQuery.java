@@ -1,5 +1,6 @@
 package codility;
 
+//all credit goes to Rafal
 public class RafalGenomicRangeQuery {
     public static int[] genome(String S, int[] P, int[] Q) {
         int len = S.length();

@@ -9,14 +9,14 @@ package binary_tree_x
  *
  * Use whichever language features are the best fit (this will depend on the language you have selected).  The following operations should be supported:
  *
- * Constructors
- * (bitree data left right) - Should return a binary tree containing data and the left and right children.
- * Accessors
- * (bitree-data t) - Should return the data contained by the tree.
- * (bitree-left t) - Should return the left child of the tree.
- * (bitree-right t) - Should return the right child of the tree.
- * Predicates
- * (bitree-leaf? t) - Should return true if the tree is a leaf (has null left and right children), false otherwise
+ *    Constructors
+ *        (bitree data left right) - Should return a binary tree containing data and the left and right children.
+ *    Accessors
+ *        (bitree-data t) - Should return the data contained by the tree.
+ *        (bitree-left t) - Should return the left child of the tree.
+ *        (bitree-right t) - Should return the right child of the tree.
+ *    Predicates
+ *        (bitree-leaf? t) - Should return true if the tree is a leaf (has null left and right children), false otherwise
  */
 trait Tree[+A] {
 
@@ -25,24 +25,24 @@ trait Tree[+A] {
   def value: Option[A] = this match {
     case n: Node[A] => Some(n.v)
     case l: Leaf[A] => Some(l.v)
-    case Empty => None
+    case Empty      => None
   }
 
   /**
    * fold with preorder traversal (root, left, right)
    * Tail Recursive Optimized
    *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
+   *        F
+   *      /   \
+   *    B       G
+   *   / \       \
+   *  A   D       I
+   *     / \     /
+   *    C   E   H
    *
    * head evaluate accumulator
    * ---- -------- -----------
-   * | (F)
+   *              | (F)
    * F   | ()     | F::B::G::()
    * F   | (F)    | (B,G)
    * B   | ()     | B::A::D::(G)
@@ -62,24 +62,24 @@ trait Tree[+A] {
    * F, B, A, D, C, E, G, I, H
    */
   def foldPreorder[B](z: B)(f: (B, A) => B): B = {
-    foldLoop(List(this), z)(f) { (n, tl) => Eval(n.v) :: n.l :: n.r :: tl}
+    foldLoop(List(this), z)(f) { (n, tl) => Eval(n.v) :: n.l :: n.r :: tl }
   }
 
   /**
    * fold with inorder traversal (left, root, right)
    * tail recursive optimized
    *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
+   *        F
+   *      /   \
+   *    B       G
+   *   / \       \
+   *  A   D       I
+   *     / \     /
+   *    C   E   H
    *
    * head evaluate accumulator
    * ---- -------- -----------
-   * | (F)
+   *              | (F)
    * F   | ()     | B::F::G::()
    * B   | ()     | A::B::D::(F,G)
    * A   | (A)    | (B,D,F,G)
@@ -99,24 +99,24 @@ trait Tree[+A] {
    * A,B,C,D,E,F,G,H,I
    */
   def foldInorder[B](z: B)(f: (B, A) => B): B = {
-    foldLoop(List(this), z)(f) { (n, tl) => n.l :: Eval(n.v) :: n.r :: tl}
+    foldLoop(List(this), z)(f) { (n, tl) => n.l :: Eval(n.v) :: n.r :: tl }
   }
 
   /**
    * fold with postorder traversal (left, right, root)
    * tail recursive optimized
    *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
+   *        F
+   *      /   \
+   *    B       G
+   *   / \       \
+   *  A   D       I
+   *     / \     /
+   *    C   E   H
    *
    * head evaluate accumulator
    * ---- -------- -----------
-   * | (F)
+   *              | (F)
    * F   | ()     | B::G::F::()
    * B   | ()     | A::D::(B,G,F)
    * A   | (A)    | (D,B,G,F)
@@ -136,24 +136,24 @@ trait Tree[+A] {
    * A,C,E,D,B,H,I,G,F
    */
   def foldPostorder[B](z: B)(f: (B, A) => B): B = {
-    foldLoop(List(this), z)(f) { (n, tl) => n.l :: n.r :: Eval(n.v) :: tl}
+    foldLoop(List(this), z)(f) { (n, tl) => n.l :: n.r :: Eval(n.v) :: tl }
   }
 
   /**
    * fold with levelorder traversal
    * tail recursive optimized
    *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
+   *        F
+   *      /   \
+   *    B       G
+   *   / \       \
+   *  A   D       I
+   *     / \     /
+   *    C   E   H
    *
    * head evaluate accumulator
    * ---- -------- -----------
-   * | (F)
+   *              | (F)
    * F   | ()     | (F::()) ::: (B,G)
    * F   | (F)    | (B,G)
    * B   | ()     | (B::(G)) ::: (A,D)
@@ -173,7 +173,7 @@ trait Tree[+A] {
    * F, B, G, A, D, I, C, E, H
    */
   def foldLevelorder[B](z: B)(f: (B, A) => B): B = {
-    foldLoop(List(this), z)(f) { (n, tl) => (Eval(n.v) :: tl) ::: List(n.l, n.r)}
+    foldLoop(List(this), z)(f) { (n, tl) => (Eval(n.v) :: tl) ::: List(n.l, n.r) }
   }
 
   /**
@@ -185,7 +185,7 @@ trait Tree[+A] {
    * P02
    * (*) Count the number of nodes in a binary tree.
    */
-  def size: Int = fold(0) { (sum, v) => sum + 1}
+  def size: Int = fold(0) { (sum, v) => sum + 1 }
 
   /**
    * P03
@@ -196,7 +196,7 @@ trait Tree[+A] {
     def loop(t: Tree[A]): Int = t match {
       case l: Leaf[A] => 1
       case n: Node[A] => Seq(loop(n.left.get), loop(n.right.get)).max + 1
-      case _ => 0
+      case _          => 0
     }
     loop(this) - 1
   }
@@ -204,13 +204,13 @@ trait Tree[+A] {
   def left: Option[Tree[A]] = this match {
     case n: Node[A] => Some(n.l)
     case l: Leaf[A] => None
-    case Empty => None
+    case Empty      => None
   }
 
   def right: Option[Tree[A]] = this match {
     case n: Node[A] => Some(n.r)
     case l: Leaf[A] => None
-    case Empty => None
+    case Empty      => None
   }
 
   /**
@@ -222,26 +222,26 @@ trait Tree[+A] {
     def loop(t: List[Tree[A]], z: Int): Int = t match {
       case (l: Leaf[A]) :: tl => loop(tl, z + 1)
       case (n: Node[A]) :: tl => loop(n.left.get :: n.right.get :: tl, z)
-      case _ :: tl => loop(tl, z)
-      case _ => z
+      case _ :: tl            => loop(tl, z)
+      case _                  => z
     }
     loop(List(this), 0)
   }
 
-  def toSeq: Seq[A] = fold(List[A]()) { (l, v) => v :: l} reverse
+  def toSeq: Seq[A] = fold(List[A]()) { (l, v) => v :: l } reverse
 
-  def toSeqPreorder: Seq[A] = foldPreorder(List[A]()) { (l, v) => v :: l} reverse
+  def toSeqPreorder: Seq[A] = foldPreorder(List[A]()) { (l, v) => v :: l } reverse
 
-  def toSeqInorder: Seq[A] = foldInorder(List[A]()) { (l, v) => v :: l} reverse
+  def toSeqInorder: Seq[A] = foldInorder(List[A]()) { (l, v) => v :: l } reverse
 
-  def toSeqPostorder: Seq[A] = foldPostorder(List[A]()) { (l, v) => v :: l} reverse
+  def toSeqPostorder: Seq[A] = foldPostorder(List[A]()) { (l, v) => v :: l } reverse
 
-  def toSeqLevelorder: Seq[A] = foldLevelorder(List[A]()) { (l, v) => v :: l} reverse
+  def toSeqLevelorder: Seq[A] = foldLevelorder(List[A]()) { (l, v) => v :: l } reverse
 
   /**
    * P05
    * (**) Find the last element in a binary tree using pre/in/post/level order traversals.
-   * Note:  This is S-99 problem P01 converted from lists to binary trees.
+   *  Note:  This is S-99 problem P01 converted from lists to binary trees.
    */
   def lastPreorder = toSeqPreorder.last
 
@@ -254,7 +254,7 @@ trait Tree[+A] {
   /**
    * P06
    * (**) Find the last but one element in a binary tree using pre/in/post/level order traversals.
-   * Note:  This is S-99 problem P02 converted from lists to binary trees.
+   *  Note:  This is S-99 problem P02 converted from lists to binary trees.
    */
   def penultimatePreorder = toSeqPreorder.dropRight(1).last
 
@@ -286,8 +286,8 @@ trait Tree[+A] {
     case (n: Node[A]) :: tl => foldLoop(o(n, tl), z)(f)(o) // never directly evaluate nodes, function o will create new accumulator
     case (l: Leaf[A]) :: tl => foldLoop(tl, f(z, l.v))(f)(o) // always evaluate Leaf
     case (e: Eval[A]) :: tl => foldLoop(tl, f(z, e.v))(f)(o) // always evaluate Eval
-    case Empty :: tl => foldLoop(tl, z)(f)(o) // ignore Empty
-    case _ => z // will be Nil (empty list)
+    case Empty :: tl        => foldLoop(tl, z)(f)(o) // ignore Empty
+    case _                  => z // will be Nil (empty list)
   }
 
   /**

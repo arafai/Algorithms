@@ -1,6 +1,7 @@
 package sorting
 
 
+
 //Write a function that prints all combinations of well-formed brackets.
 // The input is a number which says how many pairs of brackets will the different outputs have.
 // For Brackets(3) the output would be: ((()))  (()())  (())()  ()(())  ()()().

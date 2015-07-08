@@ -8,22 +8,22 @@ class Graph(val value: Char, var children: ListBuffer[Graph] = new ListBuffer[Gr
     children ++= list
 }
 
-object Graph {
-  def apply(ch: Char) = new Graph(ch)
+object Graph{
+  def apply(ch:Char) = new Graph(ch)
 }
 
 
-object DFS {
-  def traverse(start: Graph, target: Char): Boolean = {
+object DFS{
+  def traverse(start:Graph, target:Char):Boolean = {
     var stack = mutable.Stack[Graph]()
     stack.push(start)
     var found = false
-    while (stack.nonEmpty && !found) {
+    while(stack.nonEmpty && !found){
       val elem = stack.pop()
-      if (!elem.visited) {
-        if (elem.value == target)
-          found = true
-        elem.visited = true
+      if(!elem.visited) {
+        if(elem.value == target)
+          found=true
+        elem.visited=true
         elem.children.foreach(stack.push(_))
       }
     }
@@ -37,9 +37,9 @@ object Runner extends App {
   val g3 = Graph('C')
   val g4 = Graph('D')
   // A=B, A=C, B=C
-  g1.addChildren(List(g2, g3))
-  g2.addChildren(List(g1, g3))
-  g3.addChildren(List(g2, g3))
+  g1.addChildren(List(g2,g3))
+  g2.addChildren(List(g1,g3))
+  g3.addChildren(List(g2,g3))
 
   println(DFS.traverse(g1, 'D'))
 

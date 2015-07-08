@@ -13,9 +13,9 @@ object NestedString extends App {
         open += 1
       else
         close += 1
-      i += 1
+      i+=1
     }
-    if (i == n && open == close)
+    if(i==n && open==close)
       1
     else
       0

@@ -20,7 +20,7 @@ object Median extends App {
 
   def partition(a: Array[Int], start: Int, end: Int): Int = {
     val pivot = a(end)
-    var i = start - 1
+    var i = start-1
     a.slice(start, end).zipWithIndex.foreach { case (elem, j) =>
       if (elem <= pivot) {
         i += 1

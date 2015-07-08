@@ -4,15 +4,15 @@ import java.util.Collections;
 
 public class Test {
 
-    public static int intersectingDiscs(int[] A) {
+    public static int intersectingDiscs(int[] A){
         int l = A.length;
 
         long[] A1 = new long[l];
         long[] A2 = new long[l];
 
-        for (int i = 0; i < l; i++) {
-            A1[i] = (long) A[i] + i;
-            A2[i] = -((long) A[i] - i);
+        for(int i = 0; i < l; i++){
+            A1[i] = (long)A[i] + i;
+            A2[i] = -((long)A[i]-i);
         }
 
         Arrays.sort(A1);
@@ -20,26 +20,26 @@ public class Test {
 
         long cnt = 0;
 
-        for (int i = A.length - 1; i >= 0; i--) {
+        for(int i = A.length - 1; i >= 0; i--){
             int pos = Arrays.binarySearch(A2, A1[i]);
-            if (pos >= 0) {
-                while (pos < A.length && A2[pos] == A1[i]) {
+            if(pos >= 0){
+                while(pos < A.length && A2[pos] == A1[i]){
                     pos++;
                 }
                 cnt += pos;
-            } else { // element not there
-                int insertionPoint = -(pos + 1);
+            } else{ // element not there
+                int insertionPoint = -(pos+1);
                 cnt += insertionPoint;
             }
 
         }
 
-        long sub = (long) l * ((long) l + 1) / 2;
+        long sub = (long)l*((long)l+1)/2;
         cnt = cnt - sub;
 
-        if (cnt > 1e7) return -1;
+        if(cnt > 1e7) return -1;
 
-        return (int) cnt;
+        return (int)cnt;
     }
 
     public ArrayList<Integer> toArray(int test) {
@@ -76,10 +76,10 @@ public class Test {
         return result;
     } //Array(1,5,2,1,4,0)
 
-    public Integer[] sort(Integer[] x, Integer[] y) {
+    public Integer[] sort(Integer[] x, Integer[]y) {
         Integer[] idxs = new Integer[x.length];
-        for (int i = 0; i < x.length; i++) idxs[i] = i;
-        Arrays.sort(idxs, (o1, o2) -> Integer.compare(y[o1], y[o2]));
+        for(int i = 0; i < x.length; i++) idxs[i] = i;
+        Arrays.sort(idxs, (o1,o2) -> Integer.compare(y[o1], y[o2]));
         return idxs;
     }
 

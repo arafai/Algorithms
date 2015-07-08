@@ -29,7 +29,7 @@ object CutRodCutting extends App {
       (1 to m).foreach { i =>
         q = q.max(prices(i - 1) + cutRodRec(m - i))
       }
-      r(m - 1) = q
+      r(m-1) = q
       q
     }
     cutRodRec(n)

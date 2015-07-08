@@ -29,21 +29,21 @@ trait Tree[+A] {
     case Empty => None
   }
 
-  /**
-   * fold with preorder traversal (root, left, right)
-   * Tail Recursive Optimized
-   *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
-   *
-   * result
-   * F, B, A, D, C, E, G, I, H
-   */
+/**
+ * fold with preorder traversal (root, left, right)
+ * Tail Recursive Optimized
+ *
+ *        F
+ *      /   \
+ *    B       G
+ *   / \       \
+ *  A   D       I
+ *     / \     /
+ *    C   E   H
+ *
+ * result
+ * F, B, A, D, C, E, G, I, H
+ */
   def myPreOrderList(): List[A] = {
     @tailrec
     def rec(tree: List[Tree[A]], acc: List[A]): List[A] = {
@@ -101,17 +101,17 @@ trait Tree[+A] {
    * fold with levelorder traversal
    * tail recursive optimized
    *
-   * F
-   * /   \
-   * B       G
-   * / \       \
-   * A   D       I
-   * / \     /
-   * C   E   H
+   *        F
+   *      /   \
+   *    B       G
+   *   / \       \
+   *  A   D       I
+   *     / \     /
+   *    C   E   H
    *
    * head evaluate accumulator
    * ---- -------- -----------
-   * | (F)
+   *              | (F)
    * F   | ()     | (F::()) ::: (B,G)
    * F   | (F)    | (B,G)
    * B   | ()     | (B::(G)) ::: (A,D)

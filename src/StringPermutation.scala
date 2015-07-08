@@ -8,10 +8,10 @@ object StringPermutation extends App {
       if (ss.size == 0)
         println(res)
       else
-
-        ss.zipWithIndex.foreach { case (ch, i) =>
-          permRec(ss.substring(0, i) + ss.substring(i + 1, n), res + ch)
-        }
+      ss.zipWithIndex.foreach { case (ch, i) =>
+//        permRec(ss.substring(0, i) + ss.substring(i + 1, n), res + ch)
+        permRec(ss.substring(0, i) + ss.substring(i + 1, n), res + ch)
+      }
     }
 
     permRec(s)

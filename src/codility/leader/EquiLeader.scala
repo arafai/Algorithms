@@ -49,7 +49,7 @@ object EquiLeader extends App {
 
         // no need for countNonDomLeft - use i
         //        if ((i + 1)/2 < countDomLeft && count - countDomLeft > 0)
-        if (countDomLeft > (i + 1) / 2 && count - countDomLeft > n - (i + 1) - (count - countDomLeft))
+        if (countDomLeft > (i+1)/2 && count - countDomLeft > n - (i + 1) - (count - countDomLeft))
           acc + 1
         else acc
       }
